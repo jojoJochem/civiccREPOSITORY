@@ -34,6 +34,9 @@ add_executable(civicc ${FLEX_CivicLexer_OUTPUTS} ${BISON_CivicParser_OUTPUTS}
 
     # Youre free to remove the demo directory and these entries.
     src/demo/opt_sub.c src/demo/sum_ints.c src/demo/rename_identifiers.c
+    src/framework_assignments/strength_reduction.c
+    src/framework_assignments/occ_identifiers.c
+    src/framework_assignments/sum_operators.c
 )
 
 target_compile_options(civicc PRIVATE
@@ -41,11 +44,11 @@ target_compile_options(civicc PRIVATE
 )
 
 coconut_target_generate(civicc "${CMAKE_CURRENT_LIST_DIR}/src/main.ccn" dynamic)
-target_include_directories(civicc 
-    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/src" 
+target_include_directories(civicc
+    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/src"
 )
 
-add_custom_target(dot 
+add_custom_target(dot
     dot -Tpng ccngen/ast.dot > ast.png
     COMMENT "Generate a png of your ast based on the generated dot diagram."
 )

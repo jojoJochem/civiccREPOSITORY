@@ -7,7 +7,7 @@
  *
  */
 
-#include <stdio.h>
+/*#include <stdio.h>
 
 #include "ccn/ccn.h"
 #include "ccngen/ast.h"
@@ -17,12 +17,12 @@ void SIinit() { return; }
 void SIfini() { return; }
 
 static bool first_stmts = false;
-
+*/
 
 /**
  * @fn SIstmts
  */
-node_st *SIstmts(node_st *node)
+/*node_st *SIstmts(node_st *node)
 {
     TRAVchildren(node);
     if (!first_stmts) {
@@ -31,16 +31,16 @@ node_st *SIstmts(node_st *node)
         printf("Sum of integers: %d\n", data->sum);
     }
     return node;
-}
+}*/
 
 
 /**
  * @fn SInum
  */
-node_st *SInum(node_st *node)
+/*node_st *SInum(node_st *node)
 {
     struct data_si *data = DATA_SI_GET();
     data->sum += NUM_VAL(node);
     return node;
-}
+}*/
 

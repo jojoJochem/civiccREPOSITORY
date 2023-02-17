@@ -1,0 +1,30 @@
+Overview
+========
+
+There are three binaries in the toolchain:
+
+- The compiler "civcc", which compiles CiviC source code to assembly source
+
+- The assembler "civas", which compiles assembly source to an object file that
+  can be run by the VM.
+
+- The virtual machine "civvm", which runs one or more object files, one of
+  which should export a "main" function.
+
+Additionally, there is a run script "civrun" which takes one file name argument
+and runs it through the entire pipeline, deleting intermediate files
+afterwards. E.g. for the first assignment you may want to run:
+$ bin/civrun euclid.cvc
+Please enter an integer value: 60
+Please enter an integer value: 45
+15
+
+Or even:
+$ echo 60 45 | bin/civrun euclid.cvc 2>&1
+15
+
+You may want to add the toolchain directory to your $PATH so you can run the
+tools without having to prefix "<...>/bin/" every time when using the
+toolchain. E.g. add to your ~/.bashrc:
+export PATH=$PATH:<directory_where_you_unpacked_the_toolchain>/bin
+

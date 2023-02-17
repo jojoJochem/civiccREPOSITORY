@@ -1,0 +1,50 @@
+#ifndef __COREIO_H
+#define __COREIO_H
+
+void fibs (int n){
+    int fib_1 = 0;
+    int fib_2 = 1;
+    int fib_res;
+
+    if (n <= 2){
+        if (n == 1){
+            fib_res = fib_1;
+            printInt(fib_res);
+            printNewlines(1);
+        }
+        else{
+            fib_res = fib_2;
+            printInt(fib_res);
+            printNewlines(1);
+        }
+    }
+    else{
+        printInt(0);
+        printNewlines(1);
+        printInt(1);
+        printNewlines(1);
+        for(int i = n, 2, -1){
+            fib_res = fib_1 + fib_2;
+            fib_1 = fib_2;
+            fib_2 = fib_res;
+            printInt(fib_res);
+            printNewlines(1);
+        }
+    }
+}
+
+
+void primes (int n){
+    int count = 2;
+
+    while (n > 0){
+        if (isprime(count) == true){
+            n = n - 1;
+            printInt(count);
+            printNewlines(1);
+        }
+        count = count + 1;
+    }
+}
+
+#endif

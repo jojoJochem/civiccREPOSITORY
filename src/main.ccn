@@ -1,6 +1,6 @@
 start phase EntryPoint {
     info = "Denotes the entry point of your compiler",
-    
+
     actions {
         pass SPdoScanParse;
         Demo;
@@ -13,23 +13,46 @@ traversal Print {
 };
 
 phase Demo {
-    actions { 
-        traversal RenameIdentifiers {
+    actions {
+
+        /*traversal RenameIdentifiers {
             uid = RI,
             nodes = { Var, VarLet }
-        };
+        };*/
 
-        traversal SumInts {
+        /*traversal SumInts {
             uid = SI,
             nodes = { Stmts, Num },
             travdata {
                 int sum
             }
+        };*/
+
+        traversal SumOperators {
+            uid = SO,
+            nodes = { Stmts, Binop },
+            travdata {
+                int sum
+            }
         };
 
-        traversal OptSubstraction {
+        traversal StrengthReduction {
+            uid = SR,
+            nodes = { Binop }
+        };
+
+        /*traversal OptSubstraction {
             uid = OS,
             nodes = { Binop }
+        };*/
+
+        traversal OccIdentifiers {
+            uid = OI,
+            nodes = { Stmts, Var },
+
+            travdata {
+                user htable_ptr id_table
+            }
         };
     }
 };
@@ -58,12 +81,24 @@ nodeset Stmt = {Assign};
 // Nodes you want to be able to link to from your symbol table.
 nodeset Link = Expr | Stmt;
 
-root node Stmts {
+
+node Stmts {
     children {
         Stmt stmt { constructor, mandatory },
         Stmts next { constructor }
     }
 };
+
+root node Module {
+    children {
+        Stmts stmt { constructor, mandatory }
+    },
+
+    attributes {
+        int val { constructor }
+    }
+};
+
 
 node Assign {
     children {
@@ -77,7 +112,7 @@ node Binop {
         Expr left  { constructor, mandatory },
         Expr right { constructor, mandatory }
     },
-    
+
     attributes {
         binop_type type { constructor }
     }

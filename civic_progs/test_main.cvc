@@ -1,0 +1,52 @@
+#include "civic.h"
+#include "core.h"
+#include "coreio.h"
+#include "array.h"
+
+export int main(){
+    int num_1 = scanInt();
+    int num_2 = scanInt();
+
+    printInt(gcd(num_1, num_2));
+    printNewlines(1);
+
+    printInt(fac(num_1));
+    printNewlines(1);
+
+    printInt(fib(num_1));
+    printNewlines(1);
+
+    if(isprime(num_1) == true){
+        printInt(1);
+        printNewlines(1);
+    }
+    else{
+        printInt(0);
+        printNewlines(1);
+    }
+
+    fibs(num_1);
+    primes(num_1);
+
+    return 0;
+}
+
+export int mai(){
+    int col = 3;
+    int row = 2;
+
+    float[row,col] mat_a;
+    float[col,row] mat_b;
+
+    float[row,row] mat_c;
+
+    scanFloatMat(mat_a);
+    printFloatMat(mat_a);
+    scanFloatMat(mat_b);
+    printFloatMat(mat_b);
+    printNewlines(1);
+    matMul(mat_a,mat_b,mat_c);
+    printFloatMat(mat_c);
+
+    return 0;
+}

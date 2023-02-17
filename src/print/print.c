@@ -13,6 +13,17 @@
 #include "palm/dbug.h"
 
 /**
+ * @fn PRTmodule
+ */
+node_st *PRTmodule(node_st *node)
+{
+    TRAVstmt(node);
+
+    printf("Sum of arithmetic operators: %d\n", MODULE_VAL(node));
+    return node;
+}
+
+/**
  * @fn PRTstmts
  */
 node_st *PRTstmts(node_st *node)
@@ -32,10 +43,10 @@ node_st *PRTassign(node_st *node)
         TRAVlet(node);
         printf( " = ");
     }
-    
+
     TRAVexpr(node);
     printf( ";\n");
-  
+
 
     return node;
 }
@@ -95,7 +106,7 @@ node_st *PRTbinop(node_st *node)
     }
 
     printf( " %s ", tmp);
-    
+
     TRAVright(node);
 
     printf( ")(%d:%d-%d)", NODE_BLINE(node), NODE_BCOL(node), NODE_ECOL(node));
